@@ -22,6 +22,7 @@ gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
 gem "uglifier"
 gem "bootsnap", require: false
 gem 'simple_command'
+gem 'httparty'
 
 
 group :development do

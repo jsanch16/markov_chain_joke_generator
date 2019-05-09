@@ -117,6 +117,9 @@ GEM
     hashdiff (0.3.9)
     high_voltage (3.1.0)
     honeybadger (4.2.2)
+    httparty (0.17.0)
+      mime-types (~> 3.0)
+      multi_xml (>= 0.5.2)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
@@ -135,11 +138,15 @@ GEM
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     method_source (0.9.2)
+    mime-types (3.2.2)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2019.0331)
     mimemagic (0.3.3)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     msgpack (1.2.10)
+    multi_xml (0.6.0)
     neat (2.1.0)
       sass (~> 3.4)
       thor (~> 0.19)
@@ -306,6 +313,7 @@ DEPENDENCIES
   formulaic
   high_voltage
   honeybadger
+  httparty
   launchy
   listen
   neat (~> 2.1)

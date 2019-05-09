@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Markov Jokes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @markov_jokes.each do |markov_joke| %>
+      <tr>
+        <td><%= link_to 'Show', markov_joke %></td>
+        <td><%= link_to 'Edit', edit_markov_joke_path(markov_joke) %></td>
+        <td><%= link_to 'Destroy', markov_joke, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Markov Joke', new_markov_joke_path %>

@@ -29,11 +29,10 @@ class MarkovChainGenerate
   #    word.
   # 3. Stop when sentence is created (A detection of a period)
   def call
-    markov_chain = MarkovChainGenerate.new(joke_text)
     sentence = ""
-    word = "How"
+    word = word_frequencies.keys.sample
     while sentence.count(".") == 0 do
-      sentence += word + " "
+      sentence += word.nil? ? "" : "#{word} "
       word = get_next_word(word)
     end
     sentence
