@@ -30,7 +30,7 @@ class MarkovChainGenerate
   # 3. Stop when sentence is created (A detection of a period)
   def call
     sentence = ""
-    word = word_frequencies.keys.sample
+    word = word_frequencies.keys.select{ |s| /[A-Z]/.match?(s[0]) }.sample
     while sentence.count(".") == 0 do
       sentence += word.nil? ? "" : "#{word} "
       word = get_next_word(word)

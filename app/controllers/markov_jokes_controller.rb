@@ -4,7 +4,7 @@ class MarkovJokesController < ApplicationController
     response = HTTParty.get(
       'https://icanhazdadjoke.com/search',
       headers: { "Accept" => "application/json"},
-      query: { term: params[:search_term] }
+      query: { term: params[:q] }
     )
     jokes = response['results'].pluck("joke").join(" ")
     generated_joke = MarkovChainGenerate.call(jokes)
@@ -13,5 +13,9 @@ class MarkovJokesController < ApplicationController
     else
       render json: { error: generated_joke.errors }, status: :unprocessable_entity
     end
+  end
+
+  def new
+    # @markov_joke = MarkovJoke.new
   end
 end
