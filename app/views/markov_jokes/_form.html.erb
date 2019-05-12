@@ -1,6 +1,6 @@
 
 <%= form_tag("/generate_joke", method: "get") do %>
-  <%= label_tag(:q, "Generate a joke with a specific term in mind(Optional):") %>
+  <%= label_tag(:q, "Generate a joke with a specific term (Optional):") %>
   <%= text_field_tag(:q) %>
   <%= submit_tag("Generate Joke") %>
 <% end %>

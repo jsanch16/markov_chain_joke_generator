@@ -1,18 +1,24 @@
 class MarkovJokesController < ApplicationController
   def generate_joke
-    # cached_jokes = get_cached_jokes(params[:search_term])
-    response = HTTParty.get(
-      'https://icanhazdadjoke.com/search',
-      headers: { "Accept" => "application/json"},
-      query: { term: params[:q] }
-    )
-    jokes = response['results'].pluck("joke").join(" ")
-    generated_joke = MarkovChainGenerate.call(jokes)
-    if generated_joke.success?
-      render json: { joke: generated_joke.result }
-    else
-      render json: { error: generated_joke.errors }, status: :unprocessable_entity
+    cache_key = ["joke_texts", params[:q]]
+    cached_text = Rails.cache.fetch(cache_key, expires_in: 24.hours) do
+      HTTParty.get(
+        "https://icanhazdadjoke.com/search?limit=30&term=#{params[:q]}",
+        headers: { "Accept" => "application/json"}
+      )
     end
+    if cached_text
+      jokes = cached_text['results'].pluck("joke").join(" ")
+      @generated_joke = MarkovChainGenerate.call(jokes)
+      if @generated_joke.success?
+        render template: "markov_jokes/show"
+      else
+        render plain: 'There was an error generating your joke. Please try '\
+        'again.'
+      end
+    else
+      render plain: 'There was an error retrieving jokes from the API. try '\
+      "again later."
   end
 
   def new
