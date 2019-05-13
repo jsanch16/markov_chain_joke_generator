@@ -19,9 +19,6 @@ class MarkovJokesController < ApplicationController
     else
       render plain: 'There was an error retrieving jokes from the API. try '\
       "again later."
-  end
-
-  def new
-    # @markov_joke = MarkovJoke.new
+    end
   end
 end
